@@ -1,4 +1,4 @@
-# Struct Format
+# Golang Struct Format
 
 FormattedList - Returns a formatted string representation of a list of structs with selected fields represented as columns. Field names and fieldPaths must align. Field paths specify the nested fields of a struct in the format a.b.c
 
