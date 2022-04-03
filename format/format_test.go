@@ -9,12 +9,12 @@ import (
 // TestFormatted
 func TestFormatted(t *testing.T) {
 
-	item1 := &datatypes.Cell{Identity: &datatypes.Identifier{Guid: "foo", Alias: "baaar"}, CellStatus: datatypes.CellStatus_AVAILABLE, NodePort: 30002, FactoryIdentifier: &datatypes.Identifier{Guid: "foo-factory", Alias: "baaar-factory"}}
-	item2 := &datatypes.Cell{Identity: &datatypes.Identifier{Guid: "fooooo", Alias: "bar"}, CellStatus: datatypes.CellStatus_BROKEN, NodePort: 30005, FactoryIdentifier: &datatypes.Identifier{Guid: "foooooo-factory", Alias: "baaaaar-factory"}}
-	item3 := &datatypes.Cell{Identity: &datatypes.Identifier{Guid: "fooo", Alias: "bar"}, CellStatus: datatypes.CellStatus_NOT_CONNECTED, NodePort: 30004, FactoryIdentifier: &datatypes.Identifier{Guid: "fo-factory", Alias: "bar-factory"}}
-	itemList := []*datatypes.Cell{item1, item2, item3}
-	fieldNames := []string{"ID", "Name", "Status", "Node Port", "Factory"}
-	fieldPaths := []string{"Identity.Guid", "Identity.Alias", "CellStatus", "NodePort", "FactoryIdentifier.Alias"}
+	item1 := &Cell{Identity: &Identifier{Guid: "foo", Alias: "baaar"}, CellStatus: CellStatus_AVAILABLE, NodePort: 30002, ClusterIdentifier: &Identifier{Guid: "foo-Cluster", Alias: "baaar-Cluster"}}
+	item2 := &Cell{Identity: &Identifier{Guid: "fooooo", Alias: "bar"}, CellStatus: CellStatus_BROKEN, NodePort: 30005, ClusterIdentifier: &Identifier{Guid: "foooooo-Cluster", Alias: "baaaaar-Cluster"}}
+	item3 := &Cell{Identity: &Identifier{Guid: "fooo", Alias: "bar"}, CellStatus: CellStatus_NOT_CONNECTED, NodePort: 30004, ClusterIdentifier: &Identifier{Guid: "fo-Cluster", Alias: "bar-Cluster"}}
+	itemList := []*Cell{item1, item2, item3}
+	fieldNames := []string{"ID", "Name", "Status", "Node Port", "Cluster"}
+	fieldPaths := []string{"Identity.Guid", "Identity.Alias", "CellStatus", "NodePort", "ClusterIdentifier.Alias"}
 
 	_, err := format.FormattedList(itemList, fieldNames, fieldPaths)
 	if err != nil {
