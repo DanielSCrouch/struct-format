@@ -45,4 +45,6 @@ item3 := &datatypes.Cell{
 itemList := []*datatypes.Cell{item1, item2, item3}
 fieldNames := []string{"ID", "Name", "Status", "Node Port", "Factory"}
 fieldPaths := []string{"Identity.Guid", "Identity.Alias", "CellStatus", "NodePort", "FactoryIdentifier.Alias"}
+
+output, err := format.FormattedList(itemList, fieldNames, fieldPaths)
 ```
