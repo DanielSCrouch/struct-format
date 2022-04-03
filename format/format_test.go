@@ -1,8 +1,7 @@
 package format_test
 
 import (
-	"dmoc/pkg/datatypes"
-	"dmoc/pkg/utils/format"
+	"format_test/pkg/utils/format"
 	"reflect"
 	"testing"
 )
