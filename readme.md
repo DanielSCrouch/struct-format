@@ -2,7 +2,13 @@
 
 FormattedList - Returns a formatted string representation of a list of structs with selected fields represented as columns. Field names and fieldPaths must align. Field paths specify the nested fields of a struct in the format a.b.c
 
-<img src="assets/output.png" alt="drawing" width="500"/>
+```bash
+ID       Name    Status          Node Port   Factory           
+───────────────────────────────────────────────────────────────
+foo      baaar   AVAILABLE       30002       baaar-factory     
+fooooo   bar     BROKEN          30005       baaaaar-factory   
+fooo     bar     NOT_CONNECTED   30004       bar-factory   
+```
 
 ```go
 item1 := &datatypes.Cell{
