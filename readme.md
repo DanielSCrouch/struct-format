@@ -11,44 +11,44 @@ fooo     bar     NOT_CONNECTED   30004       bar-cluster
 ```
 
 ```go
-item1 := &datatypes.Cell{
-  Identity: &datatypes.Identifier{
+item1 := &Cell{
+  Identity: &Identifier{
     Guid: "foo", Alias: "baaar"
   }, 
-  CellStatus: datatypes.CellStatus_AVAILABLE, 
+  CellStatus: CellStatus_AVAILABLE, 
   NodePort: 30002, 
-  clusterIdentifier: &datatypes.Identifier{
+  clusterIdentifier: &Identifier{
     Guid: "foo-cluster", 
     Alias: "baaar-cluster"
   }
 }
 
-item2 := &datatypes.Cell{
-  Identity: &datatypes.Identifier{
+item2 := &Cell{
+  Identity: &Identifier{
     Guid: "fooooo", 
     Alias: "bar"
   }, 
-  CellStatus: datatypes.CellStatus_BROKEN, 
+  CellStatus: CellStatus_BROKEN, 
   NodePort: 30005, 
-  clusterIdentifier: &datatypes.Identifier{
+  clusterIdentifier: &Identifier{
     Guid: "foooooo-cluster", 
     Alias: "baaaaar-cluster"
   }
 }
-item3 := &datatypes.Cell{
-  Identity: &datatypes.Identifier{
+item3 := &Cell{
+  Identity: &Identifier{
     Guid: "fooo", 
     Alias: "bar"
   }, 
-  CellStatus: datatypes.CellStatus_NOT_CONNECTED, 
+  CellStatus: CellStatus_NOT_CONNECTED, 
   NodePort: 30004, 
-  clusterIdentifier: &datatypes.Identifier{
+  clusterIdentifier: &Identifier{
     Guid: "fo-cluster", 
     Alias: "bar-cluster"
     }
   }
 
-itemList := []*datatypes.Cell{item1, item2, item3}
+itemList := []*Cell{item1, item2, item3}
 fieldNames := []string{"ID", "Name", "Status", "Node Port", "cluster"}
 fieldPaths := []string{"Identity.Guid", "Identity.Alias", "CellStatus", "NodePort", "clusterIdentifier.Alias"}
 
