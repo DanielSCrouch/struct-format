@@ -54,6 +54,10 @@ func GetFieldValue(item interface{}, fieldPath []string) (value interface{}, err
 	}
 
 	reflectValue := reflect.ValueOf(item)
+	if reflectValue.IsZero() {
+		return nil, nil
+	}
+
 	fieldValue := reflect.Indirect(reflectValue).FieldByName(fieldPath[0])
 	if !fieldValue.IsValid() {
 		return nil, &InvalidFieldPath{Field: fieldPath[0]}
