@@ -1,7 +1,6 @@
 package format
 
 import (
-	"errors"
 	"fmt"
 	"reflect"
 	"strings"
@@ -15,12 +14,29 @@ func (e *InvalidFieldPath) Error() string {
 	return fmt.Sprintf("field path contains invalid field %s", e.Field)
 }
 
+type NameAndFieldPathsUnmatched struct {
+	NameLen      int
+	FieldPathLen int
+}
+
+func (e *NameAndFieldPathsUnmatched) Error() string {
+	return fmt.Sprintf("name %d and field path %d slices do not match", e.NameLen, e.FieldPathLen)
+}
+
 type InvalidFieldPathSlice struct {
 	Field string
 }
 
 func (e *InvalidFieldPathSlice) Error() string {
 	return fmt.Sprintf("field path contains slice at field %s", e.Field)
+}
+
+type InvalidSliceType struct {
+	Value reflect.Type
+}
+
+func (e *InvalidSliceType) Error() string {
+	return fmt.Sprintf("invalid list type of %s provided", e.Value.String())
 }
 
 // GetFieldValue - Returns the value of a field identified by it's field path
@@ -55,7 +71,7 @@ func GetFieldValue(item interface{}, fieldPath []string) (value interface{}, err
 func FormattedList(list interface{}, fieldNames []string, fieldPaths []string) (output string, err error) {
 
 	if len(fieldNames) != len(fieldPaths) {
-		return "", errors.New("field name length does not match field paths")
+		return "", &NameAndFieldPathsUnmatched{NameLen: len(fieldNames), FieldPathLen: len(fieldPaths)}
 	}
 
 	// Format list interface to slice
@@ -69,7 +85,7 @@ func FormattedList(list interface{}, fieldNames []string, fieldPaths []string) (
 			itemSlice = append(itemSlice, s.Index(i).Interface())
 		}
 	default:
-		return "", fmt.Errorf("invalid list type of %T provided", list)
+		return "", &InvalidSliceType{Value: reflect.TypeOf(list)}
 	}
 
 	// Check for empty slice
