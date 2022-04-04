@@ -45,6 +45,9 @@ func GetFieldValue(item interface{}, fieldPath []string) (value interface{}, err
 	if len(fieldPath) == 0 {
 		return item, nil
 	}
+	if item == nil {
+		return nil, nil
+	}
 
 	if reflect.TypeOf(item).Kind() == reflect.Slice {
 		return nil, &InvalidFieldPathSlice{Field: fieldPath[0]}
